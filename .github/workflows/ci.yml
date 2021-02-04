@@ -28,8 +28,8 @@ jobs:
     steps:
       
 
-      - name: test
-        run: echo ${{ toJSON(github.event) }}
+#      - name: test
+#        run: echo ${{ toJSON(github.event) }}
 
       - name: get list of carto team members
         uses: octokit/request-action@v2.x
