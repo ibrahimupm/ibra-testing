@@ -33,7 +33,7 @@ jobs:
         id: get_carto_team_members
         with:
           route: GET /orgs/CartoDB/members/{user}
-          user: ${{github.event.sender.login}}
+          user: ${{ fromJSON(github.event.sender).login}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
