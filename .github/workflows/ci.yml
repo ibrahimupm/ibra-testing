@@ -32,14 +32,14 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_carto_team_members
         with:
-          route: GET /orgs/CartoDB/members
+          route: GET /orgs/CartoDB/members?filter=all
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: check event sender is carto member
         run: |
           echo "${{ steps.get_carto_team_members.outputs.data }}
-          echo ${{ steps.get_carto_team_members.outputs.data }} | grep '"login":' | grep -w ibrahimmenem
+         # echo ${{ steps.get_carto_team_members.outputs.data }} | grep '"login":' | grep -w ibrahimmenem
         
       - name: Checkout repo
         uses: actions/checkout@v2
