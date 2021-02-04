@@ -25,17 +25,16 @@ jobs:
         shell: bash
     steps:
       
-#      - name: debug
-#        run: echo ${{ fromJSON(github.event) }}
 
       - name: get list of carto team members
         uses: octokit/request-action@v2.x
         id: get_carto_team_members
         with:
           route: GET /orgs/CartoDB/members/{user}
-          user: ${{ fromJSON(github.event.sender).login}}
+          user: ${{ github.event.push.sender.login }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: github.event_name == 'push'
 
       - name: check event sender is carto member
         run: |
