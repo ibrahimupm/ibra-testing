@@ -24,13 +24,16 @@ jobs:
       run:
         shell: bash
     steps:
+      
+      - name: debug
+        run: echo ${{ github.event }}
 
       - name: get list of carto team members
         uses: octokit/request-action@v2.x
         id: get_carto_team_members
         with:
-          route: GET https://api.github.com/orgs/CartoDB/teams/carto-team-all/members
-          owner: ibrahimmenem
+          route: GET https://api.github.com/orgs/CartoDB/members
+          owner: octokit
           repo: request-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
