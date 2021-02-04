@@ -38,7 +38,7 @@ jobs:
 
       - name: check event sender is carto member
         run: |
-          echo ${{ steps.get_latest_release.outputs.data }}
+          echo "${{ steps.get_latest_release.outputs.data }}"
         #  echo ${{ steps.get_latest_release.outputs.data }} | grep '"login":' | grep -w ibrahimmenem
         
       - name: Checkout repo
