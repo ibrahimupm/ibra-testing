@@ -32,7 +32,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_carto_team_members
         with:
-          route: GET /orgs/CartoDB/members/ibrahimmenem
+          route: GET /orgs/CartoDB/members/alasarr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
