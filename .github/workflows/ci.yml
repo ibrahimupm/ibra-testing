@@ -26,25 +26,18 @@ jobs:
       run:
         shell: bash
     steps:
-      
 
       - name: test
         run: echo "${{ github.event.sender.login }}"
 
-      - name: get list of carto team members
+      - name: fail if trigger is push and user is not org user, non-carto user should go via pull request
         uses: octokit/request-action@v2.x
         id: get_carto_team_members
         with:
-          route: GET /orgs/CartoDB/members/{user}
-          user: ${{ github.event.sender.login }}
+          route: GET /orgs/CartoDB/members/${{ github.event.sender.login }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: github.event_name == 'push'
 
-      - name: check event sender is carto member
-        run: |
-          echo "${{ steps.get_carto_team_members.outputs.data }}
-         # echo ${{ steps.get_carto_team_members.outputs.data }} | grep '"login":' | grep -w ibrahimmenem
-        
       - name: Checkout repo
         uses: actions/checkout@v2
