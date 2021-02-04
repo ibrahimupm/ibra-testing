@@ -32,8 +32,8 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_carto_team_members
         with:
-          route: GET /orgs/CartoDB/members/alasarr
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+          route: GET /orgs/CartoDB/members/{user}
+          user: ${{github.event.sender.login}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
