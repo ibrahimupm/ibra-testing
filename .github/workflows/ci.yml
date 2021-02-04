@@ -36,7 +36,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: check event sender is carto member
-        run: "echo ${{ steps.get_latest_release.outputs.data }}" | grep '"login":' | grep -w
+        run: echo ${{ steps.get_latest_release.outputs.data }} | grep '"login":' | grep -w ibrahimmenem
         
       - name: Checkout repo
         uses: actions/checkout@v2
