@@ -3,7 +3,9 @@ name: test
 on:
   pull_request_review:
     types: [submitted]
-  push
+  push:
+    branches:
+      - *
 
 env:
   GCLOUD_VERSION: 'latest'
