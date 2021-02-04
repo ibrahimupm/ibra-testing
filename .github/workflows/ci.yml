@@ -31,7 +31,7 @@ jobs:
         id: get_carto_team_members
         with:
           route: GET /orgs/CartoDB/members/{user}
-          user: ${{ github.sender }}
+          user: ${{ github.event_sender }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: github.event_name == 'push'
