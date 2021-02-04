@@ -26,6 +26,9 @@ jobs:
     steps:
       
 
+      - name: test
+        run: echo ${{ github.event }}
+
       - name: get list of carto team members
         uses: octokit/request-action@v2.x
         id: get_carto_team_members
