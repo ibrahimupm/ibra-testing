@@ -4,8 +4,8 @@ on:
   pull_request_review:
     types: [submitted]
   push:
-    paths:
-      - *
+    branches:
+      - '*'
 
 env:
   GCLOUD_VERSION: 'latest'
