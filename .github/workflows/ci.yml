@@ -3,9 +3,7 @@ name: test
 on:
   pull_request_review:
     types: [submitted]
-  push:
-    branches:
-      - '*'
+  push
 
 env:
   GCLOUD_VERSION: 'latest'
@@ -27,7 +25,7 @@ jobs:
       
 
       - name: test
-        run: echo ${{ fromJSON(github.event) }}
+        run: echo ${{ toJSON(github.event) }}
 
       - name: get list of carto team members
         uses: octokit/request-action@v2.x
