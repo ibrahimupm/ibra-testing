@@ -33,6 +33,7 @@ jobs:
         id: get_carto_team_members
         with:
           route: GET /orgs/CartoDB/members/alasarr
+          access_token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
