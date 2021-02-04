@@ -25,8 +25,8 @@ jobs:
         shell: bash
     steps:
       
-#      - name: debug
-#        run: echo "${{ fromJSON(github.event) }}"
+      - name: debug
+        run: echo ${{ fromJSON(github.event) }}
 
       - name: get list of carto team members
         uses: octokit/request-action@v2.x
