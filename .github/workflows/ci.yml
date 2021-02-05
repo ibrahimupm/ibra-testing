@@ -38,7 +38,6 @@ jobs:
           route: GET /orgs/CartoDB/members/${{ github.event.sender.login }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'push'
 
       - name: Checkout repo
         uses: actions/checkout@v2
