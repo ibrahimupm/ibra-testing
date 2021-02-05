@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - '*'
+  workflow_dispatch:
 
 
 
@@ -29,6 +30,7 @@ jobs:
 
       - name: test
         run: echo "${{ github.event.sender.login }}"
+
 
 
       - name: Checkout repo
