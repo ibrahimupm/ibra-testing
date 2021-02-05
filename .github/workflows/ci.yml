@@ -30,14 +30,6 @@ jobs:
       - name: test
         run: echo "${{ github.event.sender.login }}"
 
-      - name: fail if trigger is push and user is not org user, non-carto user should go via pull request
-        uses: octokit/request-action@v2.x
-        id: get_carto_team_members
-        with:
-          route: GET /orgs/CartoDB/members/${{ github.event.sender.login }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'push'
 
       - name: Checkout repo
         uses: actions/checkout@v2
