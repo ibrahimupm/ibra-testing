@@ -1,14 +1,13 @@
 name: teste
 
 on:
-  pull_request_review:
-    types: [submitted]
+#  pull_request_review:
+#    types: [submitted]
   push:
     branches:
       - '*'
-  workflow_dispatch:
-
-
+  pull_request_target:
+    types: [labeled]
 
 env:
   GCLOUD_VERSION: 'latest'
@@ -28,10 +27,22 @@ jobs:
         shell: bash
     steps:
 
-      - name: test
+      - name: user
         run: echo "${{ github.event.sender.login }}"
+
+      - name: event
+        run: echo "${{ ToJSON(github.event) }}"
+      - name: ls before
+        run: ls
 
 
 
       - name: Checkout repo
         uses: actions/checkout@v2
+
+      - name: checkout fork HEAD
+        run: git checkout ${{ github.event.pull_request.head.sha }}
+        if: github.event_name == 'pull_request_target'
+
+      - name: ls after
+        run: ls
