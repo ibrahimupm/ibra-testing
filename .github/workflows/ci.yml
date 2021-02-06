@@ -33,7 +33,7 @@ jobs:
       - name: action
         run: echo "${{ github.action }}"
       - name: event
-        run: echo "${{ github.event }}"
+        run: echo "${{ ToJSON(github.event) }}"
 
 #      - name: fail if trigger is push and user is not org user, non-carto user should go via pull request
 #        uses: octokit/request-action@v2.x
