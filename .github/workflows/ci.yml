@@ -31,7 +31,8 @@ jobs:
       - name: user
         run: echo "${{ github.event.sender.login }}"
       - name: action
-        run: echo "${{ github.action }}"
+        run: echo "Forks only run when labeled with run_ci"
+        if: github.event_name == 'pull_request_target' && ( github.event.action != 'labeled' || github.event.label.name != 'run_ci')
       - name: event
         run: echo "${{ ToJSON(github.event) }}"
       - name: ls before
@@ -57,7 +58,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: checkout fork
-        run: git checkout ${{ github.event.after}}
+        run: git checkout ${{ github.event.pull_request.head.sha }}
 
       - name: ls after
         run: ls
