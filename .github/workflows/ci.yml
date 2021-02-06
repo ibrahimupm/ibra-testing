@@ -8,8 +8,6 @@ on:
       - '*'
   workflow_dispatch:
 
-
-
 env:
   GCLOUD_VERSION: 'latest'
   NODE_VERSION: '15'
@@ -33,11 +31,19 @@ jobs:
 
       - name: fail if trigger is push and user is not org user, non-carto user should go via pull request
         uses: octokit/request-action@v2.x
-        id: get_carto_team_members
         with:
           route: GET /orgs/CartoDB/members/${{ github.event.sender.login }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        if: github.event_name == 'push'
+#
+#      - name: fail if trigger is pull_request_review and user is not org user, non-carto user should go via pull request
+#        uses: octokit/request-action@v2.x
+#        with:
+#          route: GET /orgs/CartoDB/members/${{ github.event.review.user.login }}
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        if: github.event_name == 'pull_request_review'
 
       - name: Checkout repo
         uses: actions/checkout@v2
