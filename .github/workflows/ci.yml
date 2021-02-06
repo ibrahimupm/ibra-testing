@@ -1,12 +1,11 @@
 name: test
 
 on:
-  pull_request_review:
-    types: [submitted]
+#  pull_request_review:
+#    types: [submitted]
   push:
     branches:
       - '*'
-  workflow_dispatch:
   pull_request_target:
     types: [labeled]
 
@@ -30,7 +29,7 @@ jobs:
 
       - name: user
         run: echo "${{ github.event.sender.login }}"
-      - name: action
+      - name: Check if fork merge can run CI
         run: echo "Forks only run when labeled with run_ci"
         if: github.event_name == 'pull_request_target' && ( github.event.action != 'labeled' || github.event.label.name != 'run_ci')
       - name: event
@@ -57,8 +56,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: checkout fork
+      - name: checkout fork HEAD
         run: git checkout ${{ github.event.pull_request.head.sha }}
+        if: github.event_name == 'pull_request_target'
 
       - name: ls after
         run: ls
