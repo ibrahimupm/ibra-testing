@@ -34,7 +34,11 @@ jobs:
         run: echo "${{ github.action }}"
       - name: event
         run: echo "${{ ToJSON(github.event) }}"
-      - name: ls
+      - name: ls before
+        run: ls
+      - name: checkout fork
+        run: git checkout ${{ github.event.after}}
+      - name: ls after
         run: ls
 
 #      - name: fail if trigger is push and user is not org user, non-carto user should go via pull request
