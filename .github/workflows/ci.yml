@@ -36,10 +36,6 @@ jobs:
         run: echo "${{ ToJSON(github.event) }}"
       - name: ls before
         run: ls
-      - name: checkout fork
-        run: git checkout ${{ github.event.after}}
-      - name: ls after
-        run: ls
 
 #      - name: fail if trigger is push and user is not org user, non-carto user should go via pull request
 #        uses: octokit/request-action@v2.x
@@ -59,3 +55,9 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v2
+
+      - name: checkout fork
+        run: git checkout ${{ github.event.after}}
+
+      - name: ls after
+        run: ls
